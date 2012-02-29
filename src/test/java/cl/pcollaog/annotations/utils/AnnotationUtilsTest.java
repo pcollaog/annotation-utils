@@ -1,11 +1,13 @@
 package cl.pcollaog.annotations.utils;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.List;
 
+import javax.persistence.Basic;
 import javax.persistence.Id;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,11 +25,6 @@ public class AnnotationUtilsTest {
 	private static Logger logger = LoggerFactory
 			.getLogger(AnnotationUtilsTest.class);
 
-	@Before
-	public void before() {
-		logger.info("Inicializando");
-	}
-
 	@Test
 	public void testFieldWithAnnotation() {
 		Field field = AnnotationUtils.findFieldWithAnnotation(
@@ -38,4 +35,14 @@ public class AnnotationUtilsTest {
 		Assert.assertTrue(Integer.class.equals(field.getType()));
 	}
 
+	@Test
+	public void testFindMethodsWithAnnotation() {
+		List<Method> methods = AnnotationUtils.findMethodsWithAnnotation(
+				ModelExample1Impl.class, Basic.class);
+
+		for (Method method : methods) {
+			logger.info("Methods found [{}]", method.getName());
+		}
+
+	}
 }
