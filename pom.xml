@@ -23,4 +23,9 @@
 			<version>1.0.0</version>
 		</dependency>
 	</dependencies>
+	<scm>
+		<connection>scm:git:git@github.com:pcollaog/annotation-utils.git</connection>
+		<url>scm:git:git@github.com:pcollaog/annotation-utils.git</url>
+		<developerConnection>scm:git:git@github.com:pcollaog/annotation-utils.git</developerConnection>
+	</scm>
 </project>
