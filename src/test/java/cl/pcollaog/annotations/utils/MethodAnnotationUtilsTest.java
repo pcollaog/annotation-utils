@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Basic;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,5 +36,6 @@ public class MethodAnnotationUtilsTest {
 			logger.info("Methods found [{}]", method.getName());
 		}
 
+		Assert.assertTrue(methods.size() == 2);
 	}
 }

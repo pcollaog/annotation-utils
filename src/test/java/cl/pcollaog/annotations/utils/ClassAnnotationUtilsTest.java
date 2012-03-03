@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,5 +35,6 @@ public class ClassAnnotationUtilsTest {
 			logger.info("Class found [{}]", clazz.getName());
 		}
 
+		Assert.assertTrue(classes.size() == 1);
 	}
 }
