@@ -33,8 +33,16 @@ public abstract class MethodAnnotationUtils extends AnnotationUtils {
 
 		List<Method> methods = new ArrayList<Method>();
 
-		return findMethodsWithAnnotationRecursive(clazz, annotationClass,
-				methods);
+		List<Method> methodsFound = findMethodsWithAnnotationRecursive(clazz,
+				annotationClass, methods);
+
+		if (logger.isDebugEnabled()) {
+			for (Method method : methodsFound) {
+				logger.debug("Method Found [{}]", method.getName());
+			}
+		}
+
+		return methodsFound;
 
 	}
 

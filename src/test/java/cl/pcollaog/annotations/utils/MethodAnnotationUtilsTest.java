@@ -32,9 +32,7 @@ public class MethodAnnotationUtilsTest {
 		List<Method> methods = MethodAnnotationUtils.findMethodsWithAnnotation(
 				ModelExample1Impl.class, Basic.class);
 
-		for (Method method : methods) {
-			logger.info("Methods found [{}]", method.getName());
-		}
+		logger.info("Size Array {}", methods.size());
 
 		Assert.assertTrue(methods.size() == 2);
 	}

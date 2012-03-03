@@ -39,6 +39,8 @@ public abstract class ClassAnnotationUtils extends AnnotationUtils {
 	private static List<Class<?>> findAnnotationRecursive(Class<?> clazz,
 			Class<? extends Annotation> annotationClass, List<Class<?>> classes) {
 
+		logger.debug("Classname [{}]", clazz.getName());
+
 		if (clazz.isAnnotationPresent(annotationClass)) {
 			classes.add(clazz);
 		}

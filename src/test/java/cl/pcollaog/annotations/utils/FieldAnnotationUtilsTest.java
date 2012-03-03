@@ -24,7 +24,7 @@ public class FieldAnnotationUtilsTest {
 
 	@Test
 	public void testFieldWithAnnotation() {
-		Field field = FieldAnnotationUtils.findFieldWithAnnotation(
+		Field field = FieldAnnotationUtils.findFirstFieldWithAnnotation(
 				ModelExample1Impl.class, Id.class);
 
 		logger.info(field.getType().getName());
