@@ -15,4 +15,8 @@ public abstract class AnnotationUtils {
 	private static Logger logger = LoggerFactory
 			.getLogger(AnnotationUtils.class);
 
+	protected static boolean hasSuperClass(Class<?> superClass) {
+		return null != superClass & !superClass.equals(Object.class);
+	}
+
 }

@@ -53,7 +53,7 @@ public abstract class MethodAnnotationUtils extends AnnotationUtils {
 
 		Class<?> superClass = clazz.getSuperclass();
 
-		if (null != superClass & !superClass.equals(Object.class)) {
+		if (hasSuperClass(superClass)) {
 			return findMethodsWithAnnotationRecursive(superClass,
 					annotationClass, methods);
 		}

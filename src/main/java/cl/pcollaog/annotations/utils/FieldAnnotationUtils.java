@@ -36,7 +36,7 @@ public abstract class FieldAnnotationUtils extends AnnotationUtils {
 
 		Class<?> superClass = clazz.getSuperclass();
 
-		if (null != superClass) {
+		if (hasSuperClass(superClass)) {
 			return findFieldWithAnnotation(superClass, annotationClass);
 		}
 

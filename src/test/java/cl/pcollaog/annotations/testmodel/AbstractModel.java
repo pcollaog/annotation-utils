@@ -1,5 +1,6 @@
 package cl.pcollaog.annotations.testmodel;
 
+import javax.annotation.Resource;
 import javax.persistence.Id;
 
 /**
@@ -13,6 +14,7 @@ import javax.persistence.Id;
  * @author pcollaog
  * @version $Revision$
  */
+@Resource
 public abstract class AbstractModel {
 
 	@Id
