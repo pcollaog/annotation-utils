@@ -8,6 +8,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
+
 /**
  * <p>
  * </p>
@@ -18,10 +20,17 @@ import org.slf4j.LoggerFactory;
  * @author pcollaog
  * @version $Revision$
  */
-public abstract class MethodAnnotationUtils extends AnnotationUtils {
+public abstract class MethodAnnotationUtils extends AbstractAnnotationUtils {
 
 	private static Logger logger = LoggerFactory
 			.getLogger(MethodAnnotationUtils.class);
+
+	/**
+	 * @param type
+	 */
+	protected MethodAnnotationUtils(Class<?> type) {
+		super(type);
+	}
 
 	/**
 	 * @param class1

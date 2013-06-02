@@ -28,8 +28,10 @@ public class ClassAnnotationUtilsTest {
 
 	@Test
 	public void testFind() {
-		List<Class<?>> classes = ClassAnnotationUtils.find(
-				ModelExample1Impl.class, Resource.class);
+		ClassAnnotationUtils annotationUtils = new ClassAnnotationUtils(
+				ModelExample1Impl.class);
+
+		List<Class<?>> classes = annotationUtils.find(Resource.class);
 
 		for (Class<?> clazz : classes) {
 			logger.info("Class found [{}]", clazz.getName());
@@ -37,4 +39,5 @@ public class ClassAnnotationUtilsTest {
 
 		Assert.assertTrue(classes.size() == 1);
 	}
+
 }

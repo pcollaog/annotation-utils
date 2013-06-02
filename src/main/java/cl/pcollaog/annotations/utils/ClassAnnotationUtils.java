@@ -7,6 +7,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
+
 /**
  * <p>
  * </p>
@@ -17,17 +19,21 @@ import org.slf4j.LoggerFactory;
  * @author pcollaog
  * @version $Revision$
  */
-public abstract class ClassAnnotationUtils extends AnnotationUtils {
+public class ClassAnnotationUtils extends AbstractAnnotationUtils {
 
 	private static Logger logger = LoggerFactory
 			.getLogger(ClassAnnotationUtils.class);
 
-	public static List<Class<?>> find(Class<?> clazz,
-			Class<? extends Annotation> annotationClazz) {
+	/**
+	 * @param classToInspect
+	 */
+	protected ClassAnnotationUtils(Class<?> classToInspect) {
+		super(classToInspect);
+	}
 
-		List<Class<?>> classList = new ArrayList<Class<?>>();
-
-		return findAnnotationRecursive(clazz, annotationClazz, classList);
+	public List<Class<?>> find(Class<? extends Annotation> annotationClazz) {
+		return findAnnotationRecursive(getClassToInspect(), annotationClazz,
+				new ArrayList<Class<?>>());
 	}
 
 	/**

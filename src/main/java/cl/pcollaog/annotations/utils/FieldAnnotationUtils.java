@@ -8,6 +8,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
+
 /**
  * <p>
  * </p>
@@ -18,12 +20,25 @@ import org.slf4j.LoggerFactory;
  * @author pcollaog
  * @version $Revision$
  */
-public abstract class FieldAnnotationUtils extends AnnotationUtils {
+public class FieldAnnotationUtils extends AbstractAnnotationUtils {
 
 	private static Logger logger = LoggerFactory
 			.getLogger(FieldAnnotationUtils.class);
 
-	public static Field findFirstFieldWithAnnotation(final Class<?> clazz,
+	/**
+	 * @param classToInspect
+	 */
+	protected FieldAnnotationUtils(Class<?> classToInspect) {
+		super(classToInspect);
+	}
+
+	public Field findFirstFieldWithAnnotation(
+			final Class<? extends Annotation> annotationClass) {
+		return findFirstFieldWithAnnotation(getClassToInspect(),
+				annotationClass);
+	}
+
+	private Field findFirstFieldWithAnnotation(final Class<?> clazz,
 			final Class<? extends Annotation> annotationClass) {
 
 		logger.debug("Classname [{}]", clazz.getName());
