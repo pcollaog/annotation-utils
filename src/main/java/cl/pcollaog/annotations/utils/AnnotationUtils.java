@@ -2,11 +2,11 @@ package cl.pcollaog.annotations.utils;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 
 /**
  * <p>
@@ -15,10 +15,10 @@ import org.slf4j.LoggerFactory;
  * 
  * @author pcollaog
  */
-public abstract class AbstractAnnotationUtils {
+public abstract class AnnotationUtils {
 
 	private static Logger logger = LoggerFactory
-			.getLogger(AbstractAnnotationUtils.class);
+			.getLogger(AnnotationUtils.class);
 
 	private Class<?> _classToInspect;
 
@@ -27,7 +27,7 @@ public abstract class AbstractAnnotationUtils {
 	 * @param classToInspect
 	 *            class to be inspected
 	 */
-	protected AbstractAnnotationUtils(Class<?> classToInspect) {
+	protected AnnotationUtils(Class<?> classToInspect) {
 		_classToInspect = classToInspect;
 	}
 
@@ -71,6 +71,19 @@ public abstract class AbstractAnnotationUtils {
 		FieldAnnotationUtils annotationUtils = new FieldAnnotationUtils(
 				classToInspect);
 		return annotationUtils.findFirstFieldWithAnnotation(annotation);
+	}
+
+	/**
+	 * 
+	 * @param classToInspect
+	 * @param annotation
+	 * @return
+	 */
+	public static List<Method> findMethodsWithAnnotation(
+			Class<?> classToInspect, Class<? extends Annotation> annotation) {
+		MethodAnnotationUtils annotationUtils = new MethodAnnotationUtils(
+				classToInspect);
+		return annotationUtils.findMethodsWithAnnotation(annotation);
 	}
 
 }

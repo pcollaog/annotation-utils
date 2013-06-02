@@ -20,7 +20,7 @@ import org.slf4j.LoggerFactory;
  * @author pcollaog
  * @version $Revision$
  */
-public class FieldAnnotationUtils extends AbstractAnnotationUtils {
+public class FieldAnnotationUtils extends AnnotationUtils {
 
 	private static Logger logger = LoggerFactory
 			.getLogger(FieldAnnotationUtils.class);

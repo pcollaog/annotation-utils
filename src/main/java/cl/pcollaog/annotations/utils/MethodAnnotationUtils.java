@@ -8,8 +8,6 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
-
 /**
  * <p>
  * </p>
@@ -20,7 +18,7 @@ import org.slf4j.LoggerFactory;
  * @author pcollaog
  * @version $Revision$
  */
-public abstract class MethodAnnotationUtils extends AbstractAnnotationUtils {
+public class MethodAnnotationUtils extends AnnotationUtils {
 
 	private static Logger logger = LoggerFactory
 			.getLogger(MethodAnnotationUtils.class);
@@ -33,26 +31,22 @@ public abstract class MethodAnnotationUtils extends AbstractAnnotationUtils {
 	}
 
 	/**
+	 * @param annotation
 	 * @param class1
 	 * @param class2
 	 * @return
 	 */
-	public static List<Method> findMethodsWithAnnotation(Class<?> clazz,
-			Class<? extends Annotation> annotationClass) {
-
-		List<Method> methods = new ArrayList<Method>();
-
-		List<Method> methodsFound = findMethodsWithAnnotationRecursive(clazz,
-				annotationClass, methods);
+	public List<Method> findMethodsWithAnnotation(
+			Class<? extends Annotation> annotation) {
+		List<Method> methodsFound = findMethodsWithAnnotationRecursive(
+				getClassToInspect(), annotation, new ArrayList<Method>());
 
 		if (logger.isDebugEnabled()) {
 			for (Method method : methodsFound) {
 				logger.debug("Method Found [{}]", method.getName());
 			}
 		}
-
 		return methodsFound;
-
 	}
 
 	private static List<Method> findMethodsWithAnnotationRecursive(
