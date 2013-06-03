@@ -1,6 +1,7 @@
 package cl.pcollaog.annotations.testmodel;
 
 import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -20,6 +21,9 @@ import javax.persistence.Table;
 public class ModelExample1Impl extends AbstractModel {
 
 	private String _firstName;
+
+	@Column(nullable = false, unique = false, length = 100)
+	private String _lastName;
 
 	/**
 	 * @return the firstName

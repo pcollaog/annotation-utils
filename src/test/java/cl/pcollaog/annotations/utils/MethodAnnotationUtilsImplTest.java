@@ -22,14 +22,14 @@ import cl.pcollaog.annotations.testmodel.ModelExample1Impl;
  * @author pcollaog
  * @version $Revision$
  */
-public class MethodAnnotationUtilsTest {
+public class MethodAnnotationUtilsImplTest {
 
 	private static Logger logger = LoggerFactory
-			.getLogger(MethodAnnotationUtilsTest.class);
+			.getLogger(MethodAnnotationUtilsImplTest.class);
 
 	@Test
 	public void testFindMethodsWithAnnotation() {
-		List<Method> methods = MethodAnnotationUtils.findMethodsWithAnnotation(
+		List<Method> methods = MethodAnnotationUtilsImpl.findMethodsWithAnnotation(
 				ModelExample1Impl.class, Basic.class);
 
 		logger.info("Size Array {}", methods.size());
