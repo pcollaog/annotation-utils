@@ -4,6 +4,7 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -92,8 +93,7 @@ public abstract class AnnotationUtils {
 	public static List<Class<?>> findAnnotationOnHierarchy(
 			Class<?> classToInspect, Class<? extends Annotation> annotation) {
 		logger.debug("Creating instance of", ClassAnnotationUtilsImpl.class);
-		ClassAnnotationUtils annotationUtils = new ClassAnnotationUtilsImpl(
-				classToInspect);
+		ClassAnnotationUtils annotationUtils = createClassAnnotationUtils(classToInspect);
 		return annotationUtils.findAnnotationOnHierarchy(annotation);
 	}
 
@@ -106,8 +106,7 @@ public abstract class AnnotationUtils {
 	 */
 	public static Field findFirstFieldAnnotated(Class<?> classToInspect,
 			Class<? extends Annotation> annotation) {
-		FieldAnnotationUtilsImpl annotationUtils = new FieldAnnotationUtilsImpl(
-				classToInspect);
+		FieldAnnotationUtils annotationUtils = createFieldAnnotationUtils(classToInspect);
 		return annotationUtils.findFirstFieldWithAnnotation(annotation);
 	}
 
@@ -119,9 +118,19 @@ public abstract class AnnotationUtils {
 	 */
 	public static List<Method> findMethodsWithAnnotation(
 			Class<?> classToInspect, Class<? extends Annotation> annotation) {
-		MethodAnnotationUtilsImpl annotationUtils = new MethodAnnotationUtilsImpl(
-				classToInspect);
+		MethodAnnotationUtils annotationUtils = createMethodAnnotationUtils(classToInspect);
 		return annotationUtils.findMethodsWithAnnotation(annotation);
+	}
+
+	/**
+	 * @param classToInspect
+	 * @param annotation
+	 * @return
+	 */
+	public static Map<String, Object> findFirstFieldMemeberValues(
+			Class<?> classToInspect, Class<? extends Annotation> annotation) {
+		FieldAnnotationUtils annotationUtils = createFieldAnnotationUtils(classToInspect);
+		return annotationUtils.findFirstFieldMemeberValues(annotation);
 	}
 
 }

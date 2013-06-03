@@ -2,8 +2,12 @@ package cl.pcollaog.annotations.utils;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.regex.Pattern;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +20,9 @@ import cl.pcollaog.annotations.utils.api.FieldAnnotationUtils;
  */
 public class FieldAnnotationUtilsImpl extends AnnotationUtils implements
 		FieldAnnotationUtils {
+
+	private static final Pattern OBJECT_METHOD = Pattern
+			.compile("(equals|getClass|hashCode|clone|toString|annotationType)");
 
 	private static Logger logger = LoggerFactory
 			.getLogger(FieldAnnotationUtilsImpl.class);
@@ -31,6 +38,31 @@ public class FieldAnnotationUtilsImpl extends AnnotationUtils implements
 	public Field findFirstFieldWithAnnotation(
 			final Class<? extends Annotation> annotation) {
 		return findFirstFieldWithAnnotation(getClassToInspect(), annotation);
+	}
+
+	@Override
+	public Map<String, Object> findFirstFieldMemeberValues(
+			final Class<? extends Annotation> annotation) {
+		Field firstField = findFirstFieldWithAnnotation(getClassToInspect(),
+				annotation);
+		Annotation ann = firstField.getAnnotation(annotation);
+		Method[] annMethods = ann.getClass().getDeclaredMethods();
+		Map<String, Object> memberValues = new LinkedHashMap<String, Object>();
+		for (Method method : annMethods) {
+			String methodName = method.getName();
+			if (!OBJECT_METHOD.matcher(methodName).matches()) {
+				try {
+					Object[] args = null;
+					Object value = method.invoke(ann, args);
+					memberValues.put(methodName, value);
+				} catch (Exception e) {
+					logger.error("Unexpected Error with member [{}]",
+							methodName, e);
+				}
+			}
+		}
+		return memberValues;
+
 	}
 
 	private Field findFirstFieldWithAnnotation(final Class<?> clazz,
@@ -54,13 +86,11 @@ public class FieldAnnotationUtilsImpl extends AnnotationUtils implements
 		return null;
 	}
 
-	public List<Field> findFieldsWithAnnotation(final Class<?> clazz,
-			final Class<? extends Annotation> annotationClass) {
-
-		List<Field> fieldsList = new ArrayList<Field>();
-
-		return findFieldsWithAnnotationRecursive(clazz, annotationClass,
-				fieldsList);
+	@Override
+	public List<Field> findFieldsWithAnnotation(
+			final Class<? extends Annotation> annotation) {
+		return findFieldsWithAnnotationRecursive(getClassToInspect(),
+				annotation, new ArrayList<Field>());
 	}
 
 	/**
