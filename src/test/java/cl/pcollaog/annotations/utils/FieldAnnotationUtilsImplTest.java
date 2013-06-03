@@ -17,11 +17,11 @@ import cl.pcollaog.annotations.testmodel.ModelExample1Impl;
  * 
  * @author pcollaog
  */
-public class FieldAnnotationUtilsTest {
+public class FieldAnnotationUtilsImplTest {
 
 	@Test
 	public void testFieldWithAnnotation() {
-		FieldAnnotationUtils annotationUtils = new FieldAnnotationUtils(
+		FieldAnnotationUtilsImpl annotationUtils = new FieldAnnotationUtilsImpl(
 				ModelExample1Impl.class);
 		Field field = annotationUtils.findFirstFieldWithAnnotation(Id.class);
 

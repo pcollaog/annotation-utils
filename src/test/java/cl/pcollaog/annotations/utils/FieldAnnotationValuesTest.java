@@ -33,7 +33,7 @@ public class FieldAnnotationValuesTest {
 
 	@Test
 	public void test() {
-		FieldAnnotationUtils annotationUtils = new FieldAnnotationUtils(
+		FieldAnnotationUtilsImpl annotationUtils = new FieldAnnotationUtilsImpl(
 				ModelExample1Impl.class);
 
 		Class<? extends Annotation> annotationType = Column.class;

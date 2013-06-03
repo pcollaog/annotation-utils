@@ -7,31 +7,28 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
+import cl.pcollaog.annotations.utils.api.ClassAnnotationUtils;
 
 /**
- * <p>
- * </p>
- * <p>
- * $Id$
- * </p>
  * 
  * @author pcollaog
- * @version $Revision$
  */
-public class ClassAnnotationUtils extends AnnotationUtils {
+public class ClassAnnotationUtilsImpl extends AnnotationUtils implements
+		ClassAnnotationUtils {
 
 	private static Logger logger = LoggerFactory
-			.getLogger(ClassAnnotationUtils.class);
+			.getLogger(ClassAnnotationUtilsImpl.class);
 
 	/**
 	 * @param classToInspect
 	 */
-	protected ClassAnnotationUtils(Class<?> classToInspect) {
+	protected ClassAnnotationUtilsImpl(Class<?> classToInspect) {
 		super(classToInspect);
 	}
 
-	public List<Class<?>> find(Class<? extends Annotation> annotationClazz) {
+	@Override
+	public List<Class<?>> findAnnotationOnHierarchy(
+			Class<? extends Annotation> annotationClazz) {
 		return findAnnotationRecursive(getClassToInspect(), annotationClazz,
 				new ArrayList<Class<?>>());
 	}

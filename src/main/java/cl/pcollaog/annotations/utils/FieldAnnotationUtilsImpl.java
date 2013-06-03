@@ -8,34 +8,29 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
+import cl.pcollaog.annotations.utils.api.FieldAnnotationUtils;
 
 /**
- * <p>
- * </p>
- * <p>
- * $Id$
- * </p>
  * 
  * @author pcollaog
- * @version $Revision$
  */
-public class FieldAnnotationUtils extends AnnotationUtils {
+public class FieldAnnotationUtilsImpl extends AnnotationUtils implements
+		FieldAnnotationUtils {
 
 	private static Logger logger = LoggerFactory
-			.getLogger(FieldAnnotationUtils.class);
+			.getLogger(FieldAnnotationUtilsImpl.class);
 
 	/**
 	 * @param classToInspect
 	 */
-	protected FieldAnnotationUtils(Class<?> classToInspect) {
+	protected FieldAnnotationUtilsImpl(Class<?> classToInspect) {
 		super(classToInspect);
 	}
 
+	@Override
 	public Field findFirstFieldWithAnnotation(
-			final Class<? extends Annotation> annotationClass) {
-		return findFirstFieldWithAnnotation(getClassToInspect(),
-				annotationClass);
+			final Class<? extends Annotation> annotation) {
+		return findFirstFieldWithAnnotation(getClassToInspect(), annotation);
 	}
 
 	private Field findFirstFieldWithAnnotation(final Class<?> clazz,
@@ -59,7 +54,7 @@ public class FieldAnnotationUtils extends AnnotationUtils {
 		return null;
 	}
 
-	public static List<Field> findFieldsWithAnnotation(final Class<?> clazz,
+	public List<Field> findFieldsWithAnnotation(final Class<?> clazz,
 			final Class<? extends Annotation> annotationClass) {
 
 		List<Field> fieldsList = new ArrayList<Field>();

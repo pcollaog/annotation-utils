@@ -8,34 +8,26 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import cl.pcollaog.annotations.utils.api.MethodAnnotationUtils;
+
 /**
- * <p>
- * </p>
- * <p>
- * $Id$
- * </p>
  * 
  * @author pcollaog
- * @version $Revision$
  */
-public class MethodAnnotationUtils extends AnnotationUtils {
+public class MethodAnnotationUtilsImpl extends AnnotationUtils implements
+		MethodAnnotationUtils {
 
 	private static Logger logger = LoggerFactory
-			.getLogger(MethodAnnotationUtils.class);
+			.getLogger(MethodAnnotationUtilsImpl.class);
 
 	/**
 	 * @param type
 	 */
-	protected MethodAnnotationUtils(Class<?> type) {
+	protected MethodAnnotationUtilsImpl(Class<?> type) {
 		super(type);
 	}
 
-	/**
-	 * @param annotation
-	 * @param class1
-	 * @param class2
-	 * @return
-	 */
+	@Override
 	public List<Method> findMethodsWithAnnotation(
 			Class<? extends Annotation> annotation) {
 		List<Method> methodsFound = findMethodsWithAnnotationRecursive(
